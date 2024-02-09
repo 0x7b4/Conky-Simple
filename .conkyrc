@@ -1,0 +1,130 @@
+# taille et position
+alignment top_right
+minimum_size 220 5
+maximum_width 250
+
+# écart avec le bord x=gauche ou droit y= haut ou bas
+gap_x 25
+gap_y 40
+
+#  afficher les ombres
+draw_shades yes
+# afficher des contours
+draw_outline no
+# contours autour des blocs de texte
+draw_borders no
+# largeur du contour
+border_width 1
+# largeur des marges
+# border_margin 4
+#---------------
+
+own_window yes
+own_window_transparent yes
+own_window_type normal
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+update_interval 1
+double_buffer yes
+
+#---------------
+
+# Utiliser Xft (polices lissées etc)
+use_xft yes
+xftalpha .1
+override_utf8_locale yes # force UTF8
+
+#police a utiliser : use_xft doit être a "yes"
+xftfont Fixed:size=7#OCR A Std:size=8
+# Tout le texte en majuscule
+uppercase no
+
+# Ajoute des espaces après certains objets pour éviter de les faire bouger.
+# Fonctionne uniquement avec les polices Fixes
+use_spacer right
+
+#default_color DeepSkyBlue
+default_color SteelBlue
+color1 DarkOrange1
+#color1 673828
+color2 Green
+color3 Red
+color4 Yellow
+color5 DDDDDD
+color6 AAAAAA
+color7 888888
+color8 666666
+color9 White
+#---------------
+own_window_argb_value 0
+own_window_argb_visual yes
+own_window_colour 000000
+TEXT
+${color1}${font :Bold:size=14} $alignc ${time %H}:${time %M}
+${color}${font :Bold:size=14} $alignc ${time %e} ${time %h} ${time %Y}${font :size=08}
+$alignc(${time %A})
+#${color8}$alignc Uptime: $uptime
+${color9}Système ${hr 2}
+${texeci 86400 lsb_release -si} : ${texeci 86400 lsb_release -sr} ${texeci 86400 lsb_release -sc}
+$sysname : $kernel $machine
+Uptime : $uptime
+Processus : $processes en cours : $running_processes threads : $running_threads
+${hr 2}
+${color7}RAM     : ${color9}$alignr$memperc% $mem/$memmax
+${color}$membar
+
+${color7}CPU    : ${color9}${hwmon 1 temp 1}C°@${freq_g} GHz $alignr${color7}Charge : ${color9}${loadavg}
+${color}${cpugraph 5e7b7b d8deeb}
+${voffset -24}${alignc}${cpu cpu1}%
+
+#${color7}C1: ${color}${cpubar cpu1 7,40} ${color9}${cpu cpu1}%@${hwmon 1 temp 2}C° $alignr
+${color7}C1: ${color}${cpubar cpu1 7,60} ${color9}${hwmon 1 temp 2}C° $alignr${color9}${color9}${hwmon 1 temp 3}C° ${color}${cpubar cpu2 7,60}${color7} :C2
+${color7}C3: ${color}${cpubar cpu3 7,60} ${color9}${hwmon 1 temp 4}C° $alignr${color9}${hwmon 1 temp 5}C° ${color}${cpubar cpu4 7,60}${color7} :C4
+
+HDD ${hr 2}
+${color7}Syst (${fs_type /}) : $alignr${color9}${texeci 10 hddtemp /dev/sda | awk '{print $1,$NF}'} - ${diskio /dev/sda1}/s
+${color1}${fs_bar 7,100 /} $alignr${color1}${fs_used_perc /}% ${fs_free /} sur ${fs_size /}
+${color7}Home (${fs_type /home}) : $alignr${color9}${texeci 10 hddtemp /dev/sda1/home | awk '{print $1,$NF}'} - ${diskio /dev/sda1/home}/s
+${color1}${fs_bar 7,100 /home} $alignr${color1}${fs_used_perc /home}% ${fs_free /home} sur ${fs_size /home}
+${diskiograph 20, 250}
+${color9}${voffset -24}${alignc}${diskio}/s
+${color9}
+
+RESEAU ${hr 2}
+#-------------
+${color7}Up ${color9}${offset 65}${totalup enp3s0} ${offset 12}${color7}Down ${color9}${alignr}${totaldown enp3s0}
+${color}${upspeedgraph enp3s0 22,125 5e7b7b d8deeb} ${downspeedgraph enp3s0 22,125 99c8e8 618094}
+${color9}${offset 40}${voffset -22}${upspeedf enp3s0}k/s
+${offset 180}${voffset -12}${downspeedf enp3s0}k/s
+
+#-------------
+LOCALISATION
+ ${hr 2}
+#-------------
+${color7}IP Local  : ${color9}${addr enp3s0} 
+${color7}IP Public : ${color9}${texeci 3600 wget http://checkip.dyndns.org -O - -o /dev/null | cut -d : -f 2 | cut -d \< -f 1}
+
+#-------------
+${font :size=08}${color9}CHARGE ${hr}$
+${color9}Processus$alignr${color9}${color9} PID   CPU   MEM${color9}
+ ${color #e09495}${top name 1} $alignr${top pid 1} ${top cpu 1} ${top mem 1}
+ ${color #e0d094}${top name 2} $alignr${top pid 2} ${top cpu 2} ${top mem 2}
+ ${color #A2A2A2}${top name 3} $alignr${top pid 3} ${top cpu 3} ${top mem 3}
+ ${color #787878}${top name 4} $alignr${top pid 4} ${top cpu 4} ${top mem 4}
+${color9}Memoire$alignr${color9}${color9} PID   CPU   MEM${color9}
+ ${color #e09495}${top_mem name 1} $alignr${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
+ ${color #e0d094}${top_mem name 2} $alignr${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
+ ${color #A2A2A2}${top_mem name 3} $alignr${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
+ ${color #787878}${top_mem name 4} $alignr${top_mem pid 4} ${top_mem cpu 4} ${top_mem mem 4}
+
+${color9}PORTS OUVERTS ${hr}$
+IP$alignr DPORT
+${tcp_portmon 1 65535 rip  0}${alignr 1}${tcp_portmon 1 65535 rport  0}
+${tcp_portmon 1 65535 rip  1}${alignr 1}${tcp_portmon 1 65535 rport  1}
+${tcp_portmon 1 65535 rip  2}${alignr 1}${tcp_portmon 1 65535 rport  2}
+${tcp_portmon 1 65535 rip  3}${alignr 1}${tcp_portmon 1 65535 rport  3}
+${tcp_portmon 1 65535 rip  4}${alignr 1}${tcp_portmon 1 65535 rport  4}
+${tcp_portmon 1 65535 rip  5}${alignr 1}${tcp_portmon 1 65535 rport  5}
+${tcp_portmon 1 65535 rip  6}${alignr 1}${tcp_portmon 1 65535 rport  6}
+${tcp_portmon 1 65535 rip  7}${alignr 1}${tcp_portmon 1 65535 rport  7}
+${tcp_portmon 1 65535 rip  8}${alignr 1}${tcp_portmon 1 65535 rport  8}
+${tcp_portmon 1 65535 rip  9}${alignr 1}${tcp_portmon 1 65535 rport  9}
