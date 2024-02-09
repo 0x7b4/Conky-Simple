@@ -30,7 +30,7 @@ sudo pacman -S conky conky-manager
 
 ## Clone du dépôt Conky-Simple
  Cloner le dépôt dans le dossier
- `/home/.conky`
+ `/home/user/.conky`
 
 Depôt Git :
 ```bash
