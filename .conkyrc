@@ -1,3 +1,4 @@
+#Conky-Simple By mesrine_29 (0xb4)
 # taille et position
 alignment top_right
 minimum_size 220 5
@@ -93,6 +94,7 @@ RESEAU ${hr 2}
 #-------------
 ${color7}Up ${color9}${offset 65}${totalup enp3s0} ${offset 12}${color7}Down ${color9}${alignr}${totaldown enp3s0}
 ${color}${upspeedgraph enp3s0 22,125 5e7b7b d8deeb} ${downspeedgraph enp3s0 22,125 99c8e8 618094}
+
 ${color9}${offset 40}${voffset -22}${upspeedf enp3s0}k/s
 ${offset 180}${voffset -12}${downspeedf enp3s0}k/s
 
