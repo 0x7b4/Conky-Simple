@@ -34,7 +34,7 @@ sudo pacman -S conky conky-manager
 
 Depôt Git :
 ```bash
-git clone https://github.com/0x7b4/Conky-Simple [/path/to/Conky-Simple]
+git clone https://github.com/0x7b4/Conky-Simple.git
 ```
 
 ## Quickstart
