@@ -13,7 +13,7 @@ Un conky de mon bureau
 
 ## Usage
 1. Installer "conky" via le terminal.
-2. Créer le dossier "conky" dans *$HOME/.conky* si il n'existe pas.
+2. Créer le dossier ".conky" dans *$HOME/.conky* si il n'existe pas.
 3. Cloner la repository.
 4. Lancer conky.
 
