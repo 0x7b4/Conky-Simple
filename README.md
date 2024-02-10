@@ -8,8 +8,7 @@ Un conky de mon bureau
 
 ## Screenshots
 
-![Mon_Conky](https://github.com/0x7b4/Conky-Simple/assets/29344965/eeb85129-db52-4920-945c-bfec7adefe95)
-
+![Conky-manager](https://github.com/0x7b4/Conky-Simple/assets/29344965/8516d181-eba0-4c5d-aa66-e0e1491f7bb6)
 
 ## Usage
 1. Installer "conky" via le terminal.
